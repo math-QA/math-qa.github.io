@@ -1,13 +1,188 @@
- 
-<!DOCTYPE html>
-<html>
 
+<!DOCTYPE html>
 <head>
-    <title>Hello, world</title>
+  <title>MathQA</title>
+  
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/style.css">
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+    
+  <!-- For event dropdown -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css">
+
+  <!-- For spinner -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.js"></script>
+  <link rel="stylesheet" href="https://spin.js.org/spin.css">
+  
+  <script type="text/javascript" src="js/clientside.js"></script>
 </head>
 
 <body>
-    <h1>Hello, world</h1>
-</body>
+  <div class="container content-left" style="">
+    <div class="row" style="margin-top: 20px;">
+      <div class="col-sm-10">
+        <h1 class="">MathQA<small class="text-muted"><br>Data Annotation, Validation and Examples</small></h1>
+        <p style="font-size:24px; background-color: yellow;"><em>Quick links:</em>&nbsp;
+          <a href="data/MathQA.zip">DataSet</a>
+          &nbsp;
+        </p>
+      </div>
+    </div>
 
-</html>
+
+
+
+    <div class="row" style="background-color:lightgray; padding:20px">
+      <div class="col-10">
+      
+        <h4>AQuA-RAT Overview</h4>
+        <p style="font-size: .95rem;">
+          Our dataset is gathered by using a new representation language to annotate over the <em>AQuA-RAT</em> dataset. 
+          <em>AQuA-RAT</em> has provided the questions, options, rationale, and the correct options.
+        </p>
+        <p>
+          <strong>Question</strong>: A train running at the speed of 48 km / hr crosses a pole in 9 seconds . what is the length of the train ?
+          <br>
+          <strong>Rationale</strong>: Speed = ( 48 x 5 / 18 ) m / sec = ( 40 / 3 ) m / sec . length of the train = ( speed x time ) . length of the train = ( 40 / 3 x 9 ) m = 120 m . answer is c .
+          <br>
+          <strong>Options</strong>: a ) 140 , b ) 130 , c ) 120 , d ) 170 , e ) 160
+          <br>
+          <strong>Correct Option is</strong>: C
+        </p>
+        <p>
+          The rationales are noisy, incomplete and sometimes incorrect. 
+          We correct these rationales and provide stepwise solutions for a portion of <em>AQuA-RAT</em>.
+          <br>
+          <strong>Our Annotated Formula</strong>: multiply(divide(multiply(48, const_1000), const_3600), 9)
+        </p>
+      </div>
+<!--       <div class="col-6">
+        <img class="figure-img img-fluid rounded" src="graphics/1.png" alt="see caption" style="margin-left: 20px; width: 90%; float: right;">
+      </div> -->
+    </div>
+    <hr>
+    <div class="row" style="margin-top: 25px;">
+      <div class="col-5">
+        <h4>Annotation Scheme Explanation</h4>
+        <p>
+          We have designed an annotation platform through the <em>Figure Eight</em> platform. 
+          We have defined a representation language that can capture the steps that are necessary for finding the solution to the problem. 
+          Each step in our final program is the predefined operation and its arguments, which can be chosen from the problems, a list of constants or previous calculations. 
+          Here is the overview of our job:
+        </p>
+        <p>
+          <ul>
+            <li>Problem text is shown to the contributors.</li>
+            <li>Based on the category of the problem, related operations are shown to the contributor. </li>
+            <li>Contributors can see a hint containing the formula, argument and explanation by hovering over operations.</li>
+            <li>After selecting an operation, a list of valid arguments are shown to the contributor to choose from. When the arguments list is complete, the output value of the operation is calculated and added to the valid arguments list.</li>
+            <li>This process will continue until the operation values are close to the final answer with a error margin.</li>
+            <li>We record the contributor’s actions in the form of a line of math expressions.</li>
+          </ul>  
+        </p>
+        <p>
+        <p>
+          Figure eight provides unique features that help us achieve data that is clean, reliable and accurate. 
+          The task of annotating math word problem is especially complicated and time consuming task. 
+          The points that should considered are :
+
+        </p>
+        <p>
+          <ul>
+            <li>Accuracy of the solution : To ensure accuracy we have defined several test questions which will be shown to contributors randomly and they should maintain an accuracy above the threshold. We constantly monitored contributors’ answers to a quality question to allow different variations for a solution. </li>
+            <li>Submission validation : Having a final correct answer lets us check the calculation result of a contributor-provided program. The solution can only be submitted if the final answer matches the correct answer and the contributor used at least one value from problem. </li>
+          </ul>  
+        </p>
+        <p>
+          
+        </p>
+      </div>
+      <!--div class="col-1">
+      </div-->
+      <div class="col-5">
+        <figure>
+          <div class="img-div">
+            <img class="figure-img img-fluid rounded" src="graphics/1.png" alt="see caption" style="width: 180%;max-width:none; border:solid;">
+            <!-- <img class="hoverlarge" src="graphics/1.png" alt="see caption" style="left:0px;top:0px; border-radius: 5%;"> -->
+            <figcaption class="figure-caption" style="background-color:lightblue; width: 800px">
+              By hovering over the opration the hind will be shown in the operation stack section.
+            </figcaption>
+          </div>
+        </figure>
+        <hr>
+        <figure>
+          <div class="img-div">
+            <img class="figure-img img-fluid rounded" src="graphics/2.png" alt="see caption" style="width: 180%;max-width:none; border:solid;">
+            <!-- <img class="hoverlarge" src="graphics/2.png" alt="see caption" style="left: -120px; top: 250px; border-radius: 5%;"> -->
+            <figcaption class="figure-caption" style="background-color:lightblue; width: 800px">
+              The previous calculations are added to the list of valid arguments.
+            </figcaption>
+          </div>
+        </figure>
+        <figure>
+          <div class="img-div">
+            <img class="figure-img img-fluid rounded" src="graphics/3.png" alt="see caption" style="width: 180%;max-width:none; border:solid;">
+            <!-- <img class="hoverlarge" src="graphics/3.png" alt="see caption" style="left: -120px; top: 250px; border-radius: 5%;"> -->
+            <figcaption class="figure-caption" style="background-color:lightblue; width: 800px">
+              The final answer is acceptable when the currect calculation result is the same as the correct option and at least one number from problem is used. 
+              The Result would automatically copied to the requiredd result field which let the contributors to submit their results. 
+            </figcaption>
+          </div>
+        </figure>
+      </div>
+    </div>
+    <!-- ************************ Validation ******************** -->
+    <div class="row" style="margin-top: 25px;">
+      <div class="col-5">
+        <h4>Validation Scheme Explanation</h4>
+        <p>
+          The results of the annotation task are not all correct. 
+          There are cases that a logically wrong program would get us to the final answer. 
+          Therefore we designed a validation task. Here are the steps for that task:
+
+        </p>
+        <p>
+          <ul>
+            <li>The contributor will be presented with the following components: The problem, the rationale, and the math expression that has been annotated as the solution.</li>
+            <li>By clicking over every part of the expression they can see the calculation result if they want to compare the number with the numbers that are mentioned in the rationale. </li>
+            <li>If the annotation is aligned and correct with rationale they should choose “yes” ; Otherwise they should choose “no”.</li>
+          </ul>  
+        </p>
+        The quality of the validation task is also set by designing the quality questions.
+        <p>
+          
+        </p>
+      </div>
+      <!--div class="col-1">
+      </div-->
+      <div class="col-5">
+        <figure>
+          <div class="img-div">
+            <img class="figure-img img-fluid rounded" src="graphics/4.png" alt="see caption" style="width: 180%;max-width:none; border:solid;">
+            <!-- <img class="hoverlarge" src="graphics/1.png" alt="see caption" style="left:0px;top:0px; border-radius: 5%;"> -->
+            <figcaption class="figure-caption" style="background-color:lightblue; width: 800px">
+              Two paths for a problems, both resulting in a same number, but the one on the buttom is logically wrong.
+            </figcaption>
+          </div>
+        </figure>
+        <hr>
+        <figure>
+          <div class="img-div">
+            <img class="figure-img img-fluid rounded" src="graphics/5.png" alt="see caption" style="width: 180%;max-width:none; border:solid;">
+            <!-- <img class="hoverlarge" src="graphics/2.png" alt="see caption" style="left: -120px; top: 250px; border-radius: 5%;"> -->
+            <figcaption class="figure-caption" style="background-color:lightblue; width: 800px">
+              By clicking on portion of experssion contributors can see the result for that part of expression.
+            </figcaption>
+          </div>
+        </figure>
+      </div>
+    </div>
+  </div>  
+</body>
+<script type="text/javascript">
+
+</script>
