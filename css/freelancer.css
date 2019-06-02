@@ -336,7 +336,7 @@ form .row:first-child .floating-label-form-group {
 }
 
 a {
-  color: #18BC9C;
+  color: black;
 }
 
 a:focus, a:hover, a:active {
@@ -381,4 +381,29 @@ a:focus, a:hover, a:active {
 .btn-secondary:hover, .btn-secondary:focus, .btn-secondary:active {
   background-color: #1a252f;
   border-color: #1a252f;
+}
+
+.row{
+  margin-top:40px;
+  padding: 0 10px;
+}
+.clickable{
+  cursor: pointer;   
+}
+
+.panel-heading div {
+margin-top: -18px;
+font-size: 15px;
+}
+.panel-heading div span{
+margin-left:5px;
+}
+.panel-body{
+display: none;
+}
+
+.sidenav {
+  position: fixed;
+  z-index: 1;
+  overflow-x: hidden;
 }
